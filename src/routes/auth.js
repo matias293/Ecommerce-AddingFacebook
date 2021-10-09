@@ -27,7 +27,10 @@ router.get('/datos', authController.data);
 
  router.get('/signup', authController.getSignUp)
 
+ router.get('/randoms', authController.randoms)
 
+ router.get('/info', authController.info)
+ 
 
 
 export default router

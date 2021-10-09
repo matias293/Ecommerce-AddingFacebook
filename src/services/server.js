@@ -58,6 +58,7 @@ app.use('/',authRouter)
 
 
 
+
 app.use('/',(req,res,next)=>{
 
   if(req.isAuthenticated()){

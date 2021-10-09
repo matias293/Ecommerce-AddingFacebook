@@ -1,18 +1,14 @@
 import passport from 'passport';
 import passportFacebook from 'passport-facebook';
 
-import dotenv from 'dotenv'
-
-dotenv.config()
-
-
+import Config from '../config/index'
 
 
 const FaceBookStrategy = passportFacebook.Strategy;
 
 const strategyOptions= {
-  clientID:process.env.CLIENT_ID ,
-  clientSecret:process.env.CLIENT_SECRET ,
+  clientID: '1199081557245042',
+  clientSecret:'a9ced53c15fd8ea37ef51e635cf334af' ,
   callbackURL: 'http://localhost:8080/auth/facebook/callback',
   profileFields: ['id', 'displayName', 'photos', 'emails'],
 };

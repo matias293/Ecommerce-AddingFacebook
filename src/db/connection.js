@@ -1,14 +1,13 @@
 const mongoose = require('mongoose');
-import dotenv from 'dotenv'
-
-dotenv.config()
+import Config from '../config/index'
 
 
 const dbConnection = async() => {
 
     try {
+        
 
-        await mongoose.connect(process.env.MONGO);
+        await mongoose.connect(Config.MONGO_INGRESS);
         console.log('BASE DE DATOS ONLINE')
         
 

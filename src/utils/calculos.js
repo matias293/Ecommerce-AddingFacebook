@@ -1,0 +1,23 @@
+export const calculo = (cant) => {
+   let numRepetido = {}
+        for (let index = 0; index < cant; index++) {
+         let num = Math.floor((Math.random() * (1000 - 1 + 1)) + 1) 
+         
+          if(numRepetido[num]) {
+            numRepetido[num] += 1
+          } else {
+            numRepetido[num] = 1
+          }
+        }
+        return numRepetido
+}
+
+process.on('message', (msg) => {
+    if (msg == 'start') {
+      
+      console.log('Start calculo');
+      const sum = calculo(Number(process.argv[2]));
+        process.send(sum);
+      
+    }
+  });
