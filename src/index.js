@@ -12,7 +12,7 @@ dbConnection()
 .then(result => {
 const subproceso = 'CLUSTER' || 'FORK'
 
-  if ( cluster.isMaster) {
+  if (subproceso === 'CLUSTER' && cluster.isMaster) {
     console.log(`NUMERO DE CPUS ===> ${numCPUs}`);
     console.log(`PID MASTER ${process.pid}`);
   
