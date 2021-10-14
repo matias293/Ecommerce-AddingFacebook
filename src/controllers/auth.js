@@ -1,16 +1,16 @@
-import bcrypt from'bcryptjs'
-import { session } from 'passport'
+
 import { fork } from 'child_process';
 import path from 'path';
+import os from 'os';
 
-import {calculo} from '../utils/calculos'
-import Usuario from '../models/usuario'
+
 const scriptPath = path.resolve(__dirname, '../utils/calculos.js')
 
 
 class Auth {
 
     getLogin = (req,res) => {
+      
        if(req.isAuthenticated()){
            res.redirect('/')
        }
@@ -88,30 +88,33 @@ class Auth {
       }
 
       info = (req, res) => {
+
         res.json({'Plataforma':process.platform,
         'Version de Node':process.version,
         'Uso de Memorias':process.memoryUsage(),
         'Path de operacion':process.cwd(),
         'ID del proceso':process.pid,
-        'Comando de entrada':process.argv})
+        'Comando de entrada':process.argv,
+        'Numero de procesadores': os.cpus().length})
         
       }
 
       randoms = (req, res) => {
-        let {cant} = req.query
-        
-        const query = cant || 10000000
-        
+      
 
-        const computo = fork(scriptPath,[query]);
-            computo.send('start');
+       let {cant} = req.query
+        
+      const query = cant || 100000000
+
+        const computo = fork(scriptPath,[query]);  
+          computo.send('start');
             computo.on('message', (sum) => {
               res.json({
                 resultado: sum,
               });
             });
+      //  }
       }
-
 }
 
 export const authController = new Auth()

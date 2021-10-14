@@ -4,30 +4,57 @@ import Product from '../models/product'
 
 class Productos {
     getAll = async() =>{
+      try {
         const products =  await Product.find()
           return products
+        
+      } catch (error) {
+        console.log(error)
+      }
       
       }
     
       getProduct = async(id) =>{
-        const product = await Product.findById(id)
-        return product
-      
+        try {
+          const product = await Product.findById(id)
+          return product
+          
+        } catch (error) {
+          
+          console.log(error)
+        }
     }
 
       add = async(data) => {
-         const product = new Product(data)
-         await product.save()
+        try {
+          const product = new Product(data)
+          await product.save()
+          
+        } catch (error) {
+          
+          console.log(error)
+        }
+
       }
 
       update = async(id, data )=> {
-        await Producto.findByIdAndUpdate(id,data)
+        try {
+          await Producto.findByIdAndUpdate(id,data)
+          
+        } catch (error) {
+          console.log(error)
+          
+        }
       }
 
       delete = async(id) => {
-      
-          const product = await products.findByIdAndDelete(id);
-          return product
+       try {
+         const product = await products.findByIdAndDelete(id);
+         return product
+         
+       } catch (error) {
+         console.log(error)
+       }
       }
     
 }

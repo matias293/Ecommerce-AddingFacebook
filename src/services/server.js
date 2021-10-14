@@ -60,7 +60,7 @@ app.use('/',authRouter)
 
 
 app.use('/',(req,res,next)=>{
-
+  console.log('entro')   
   if(req.isAuthenticated()){
     if(req.session.loggedNormal){
       return res.render('home',{pageTitle:'Home', mensaje:req.user.username, isLogIn:req.isAuthenticated()})

@@ -35,11 +35,15 @@ class Mensajes {
     }
 
     add = async(messageData) =>{
-        
-      let nuevoMensaje = new messageModel(messageData)
-      let mensajeGuardado =  await nuevoMensaje.save()
-      return mensajeGuardado
-      
+        try {
+          let nuevoMensaje = new messageModel(messageData)
+          let mensajeGuardado =  await nuevoMensaje.save()
+          return mensajeGuardado
+          
+        } catch (error) {
+         console.log(error) 
+        }
+   
        
 
     }

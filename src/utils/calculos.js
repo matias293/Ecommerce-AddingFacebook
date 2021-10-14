@@ -12,11 +12,13 @@ export const calculo = (cant) => {
         return numRepetido
 }
 
+
 process.on('message', (msg) => {
+  query = Number(process.argv[2]) || 500000
     if (msg == 'start') {
-      
+      console.log(process.pid,'calculop')
       console.log('Start calculo');
-      const sum = calculo(Number(process.argv[2]));
+      const sum = calculo();
         process.send(sum);
       
     }
