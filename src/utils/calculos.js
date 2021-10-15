@@ -14,7 +14,8 @@ export const calculo = (cant) => {
 
 
 process.on('message', (msg) => {
-  query = Number(process.argv[2]) || 500000
+  query = Number(process.argv[2]) 
+  
     if (msg == 'start') {
       console.log(process.pid,'calculop')
       console.log('Start calculo');

@@ -21,22 +21,21 @@ var dbConnection = /*#__PURE__*/function () {
             return mongoose.connect(_index["default"].MONGO_INGRESS);
 
           case 3:
-            console.log('BASE DE DATOS ONLINE');
-            _context.next = 10;
+            _context.next = 9;
             break;
 
-          case 6:
-            _context.prev = 6;
+          case 5:
+            _context.prev = 5;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
             throw new Error('Error a la hora de iniciar la base de datos');
 
-          case 10:
+          case 9:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 6]]);
+    }, _callee, null, [[0, 5]]);
   }));
 
   return function dbConnection() {

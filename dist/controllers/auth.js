@@ -21,6 +21,10 @@ var _path = _interopRequireDefault(require("path"));
 
 var _os = _interopRequireDefault(require("os"));
 
+var _cluster = _interopRequireDefault(require("cluster"));
+
+var _calculos = require("../utils/calculos");
+
 var scriptPath = _path["default"].resolve(__dirname, '../utils/calculos.js');
 
 var Auth = function Auth() {
@@ -166,12 +170,21 @@ var Auth = function Auth() {
       'Path de operacion': process.cwd(),
       'ID del proceso': process.pid,
       'Comando de entrada': process.argv,
+      'Modo': _cluster["default"].isMaster ? 'FORK' : 'CLUSTER',
       'Numero de procesadores': _os["default"].cpus().length
     });
   });
   (0, _defineProperty2["default"])(this, "randoms", function (req, res) {
     var cant = req.query.cant;
-    var query = cant || 500000000;
+    var query = Number(cant) || 100000000;
+
+    if (_cluster["default"].isMaster) {
+      var sum = (0, _calculos.calculo)(query);
+      return res.json({
+        resultado: sum
+      });
+    }
+
     var computo = (0, _child_process.fork)(scriptPath, [query]);
     computo.send('start');
     computo.on('message', function (sum) {

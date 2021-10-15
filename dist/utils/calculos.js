@@ -23,7 +23,7 @@ var calculo = function calculo(cant) {
 
 exports.calculo = calculo;
 process.on('message', function (msg) {
-  query = Number(process.argv[2]) || 500000;
+  query = Number(process.argv[2]);
 
   if (msg == 'start') {
     console.log(process.pid, 'calculop');

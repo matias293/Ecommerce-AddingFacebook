@@ -76,8 +76,6 @@ app.use(_express["default"]["static"](publicFolderPath));
 app.use('/api', _index["default"]);
 app.use('/', _auth["default"]);
 app.use('/', function (req, res, next) {
-  console.log('entro');
-
   if (req.isAuthenticated()) {
     if (req.session.loggedNormal) {
       return res.render('home', {

@@ -2,6 +2,10 @@
 import { fork } from 'child_process';
 import path from 'path';
 import os from 'os';
+import cluster from 'cluster'
+
+import {calculo} from '../utils/calculos'
+
 
 
 const scriptPath = path.resolve(__dirname, '../utils/calculos.js')
@@ -95,6 +99,7 @@ class Auth {
         'Path de operacion':process.cwd(),
         'ID del proceso':process.pid,
         'Comando de entrada':process.argv,
+        'Modo':cluster.isMaster ? 'FORK' : 'CLUSTER' ,
         'Numero de procesadores': os.cpus().length})
         
       }
@@ -104,7 +109,15 @@ class Auth {
 
        let {cant} = req.query
         
-      const query = cant || 100000000
+      const query = Number(cant) || 100000000
+      
+      if (cluster.isMaster) {
+       const sum = calculo(query)
+       return res.json({
+         resultado: sum
+       })
+
+      }
 
         const computo = fork(scriptPath,[query]);  
           computo.send('start');

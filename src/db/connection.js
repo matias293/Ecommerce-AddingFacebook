@@ -8,7 +8,7 @@ const dbConnection = async() => {
         
 
         await mongoose.connect(Config.MONGO_INGRESS);
-        console.log('BASE DE DATOS ONLINE')
+        
         
 
     } catch (error) {
