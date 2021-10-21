@@ -8,11 +8,11 @@ class Producto {
        let productos = await productsPersistencia.getAll()
        if (productos.length === 0) {
         return res.status(404).json({ error: 'No hay productos cargados' });
-        }else {
+        } else {
         res.json({
             productos
         })
-    }
+       }
        
     }
 

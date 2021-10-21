@@ -7,7 +7,7 @@
     "transpile": "babel src --out-dir dist",
     "start": "node ./dist/index.js",
     "build:start": "npm run transpile && npm run start",
-    "prod":"pm2 start ecosystem.config.js",
+    "prod": "pm2 start ecosystem.config.js",
     "dev": "nodemon --exec ./node_modules/.bin/babel-node ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,6 +26,7 @@
     "@babel/runtime": "^7.15.4",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
     "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
@@ -33,6 +34,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "faker": "^5.5.3",
+    "forever": "^4.0.1",
     "minimist": "^1.2.5",
     "moment": "^2.29.1",
     "mongoose": "^6.0.5",
@@ -40,9 +42,8 @@
     "passport": "^0.5.0",
     "passport-facebook": "^3.0.0",
     "passport-local": "^1.0.0",
+    "pm2": "^5.1.2",
     "socket.io": "^4.2.0",
-    "winston": "^3.3.3",
-    "forever": "^4.0.1",
-    "pm2": "^5.1.2"
+    "winston": "^3.3.3"
   }
 }

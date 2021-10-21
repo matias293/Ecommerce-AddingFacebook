@@ -19,15 +19,17 @@ var _connection = require("./db/connection");
 
 var _server = _interopRequireDefault(require("./services/server"));
 
+var _logger = _interopRequireDefault(require("./config/logger"));
+
 _dotenv["default"].config();
 
 var argumentos = (0, _minimist["default"])(process.argv.slice(2));
-var PORT = argumentos.puerto || 8080;
+var PORT = -1;
 exports.PORT = PORT;
 (0, _connection.dbConnection)().then(function (result) {
   _server["default"].listen(PORT, function () {
-    return console.log("Servidor express escuchando en el puerto ".concat(PORT, " - PID WORKER ").concat(process.pid));
+    return _logger["default"].info("Servidor express escuchando en el puerto ".concat(PORT, " - PID WORKER ").concat(process.pid));
   });
 })["catch"](function (err) {
-  console.log(err);
+  _logger["default"].error(err);
 });

@@ -6,6 +6,7 @@ import session from 'express-session';
 import cookieParser from 'cookie-parser'
 import MongoStore from 'connect-mongo';
 import passport from 'passport'
+import compression from 'compression'
 // import passport from '../middlewares/passportFacebook'
 
 
@@ -31,6 +32,7 @@ const StoreOptions = {
 };
 
 const app = express();
+app.use(compression())
 
 app.use(cookieParser());
 

@@ -1,5 +1,6 @@
 
 import Product from '../models/product'
+import logger from '../config/logger'
 
 
 class Productos {
@@ -9,7 +10,7 @@ class Productos {
           return products
         
       } catch (error) {
-        console.log(error)
+        logger.error(error)
       }
       
       }
@@ -32,7 +33,7 @@ class Productos {
           
         } catch (error) {
           
-          console.log(error)
+          logger.error(error)
         }
 
       }
@@ -42,7 +43,7 @@ class Productos {
           await Producto.findByIdAndUpdate(id,data)
           
         } catch (error) {
-          console.log(error)
+          logger.error(error)
           
         }
       }
@@ -53,7 +54,7 @@ class Productos {
          return product
          
        } catch (error) {
-         console.log(error)
+        logger.error(error)
        }
       }
     

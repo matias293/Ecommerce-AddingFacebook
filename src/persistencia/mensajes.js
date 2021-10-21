@@ -1,4 +1,6 @@
 import { normalize, schema, denormalize } from 'normalizr';
+
+import logger from '../config/logger'
 import {messageModel} from '../models/mensaje'
 
 const author = new schema.Entity('author', {}, { idAttribute: 'email' });
@@ -29,7 +31,7 @@ class Mensajes {
             return normalizedMessages;
           } catch (err) {
             
-            console.log(err);
+            logger.error(err);
           }
         
     }
@@ -41,7 +43,7 @@ class Mensajes {
           return mensajeGuardado
           
         } catch (error) {
-         console.log(error) 
+         logger.error(error) 
         }
    
        
